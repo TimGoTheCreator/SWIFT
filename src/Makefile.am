@@ -382,7 +382,7 @@ nobase_noinst_HEADERS += stars/GEAR/stars.h stars/GEAR/stars_iact.h stars/GEAR/s
 nobase_noinst_HEADERS += stars/GEAR/stars_debug.h stars/GEAR/stars_csds.h stars/GEAR/stars_part.h
 nobase_noinst_HEADERS += stars/GEAR/stars_stellar_type.h
 nobase_noinst_HEADERS += forcing/none/forcing.h forcing/roberts_flow/forcing.h forcing/roberts_flow_acceleration/forcing.h
-nobase_noinst_HEADERS += forcing/ABC_flow/forcing.h
+nobase_noinst_HEADERS += forcing/ABC_flow/forcing.h forcing/idealized_agn_jet/forcing.h
 nobase_noinst_HEADERS += potential/none/potential.h potential/point_mass/potential.h
 nobase_noinst_HEADERS += potential/isothermal/potential.h potential/disc_patch/potential.h
 nobase_noinst_HEADERS += potential/sine_wave/potential.h potential/constant/potential.h
@@ -525,14 +525,15 @@ nobase_noinst_HEADERS += sidm/Basic/sidm.h sidm/Basic/sidm_io.h sidm/Basic/sidm_
 nobase_noinst_HEADERS += sidm/Basic/sidm_iact.h sidm/Basic/sidm_debug.h
 nobase_noinst_HEADERS += sidm/None/sidm.h sidm/None/sidm_io.h sidm/None/sidm_part.h sidm/None/sidm_properties.h
 nobase_noinst_HEADERS += sidm/None/sidm_iact.h sidm/None/sidm_debug.h
+nobase_noinst_HEADERS += likwid_wrapper.h
 
 # Sources and special flags for the gravity library
-libgrav_la_SOURCES = runner_doiact_grav.c
+libgrav_la_SOURCES = runner_doiact_grav.c runner_doiact_long_range_grav.c
 libgrav_la_CFLAGS = $(AM_CFLAGS) $(GRAVITY_CFLAGS)
 libgrav_la_LDFLAGS = $(AM_LDFLAGS) $(EXTRA_LIBS)
 
 # Sources and special flags for the gravity MPI library
-libgrav_mpi_la_SOURCES = runner_doiact_grav.c
+libgrav_mpi_la_SOURCES = runner_doiact_grav.c runner_doiact_long_range_grav.c
 libgrav_mpi_la_CFLAGS = $(AM_CFLAGS) $(GRAVITY_CFLAGS) -DWITH_MPI
 libgrav_mpi_la_LDFLAGS = $(AM_LDFLAGS) $(MPI_LIBS) $(EXTRA_LIBS)
 
