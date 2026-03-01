@@ -159,12 +159,14 @@ static void clocks_estimate_cpufreq(void) {
   /* Guard against division by zero if clocks_diff() returns 0.0 */
   if (realsleep > 0.0) {
       clocks_cpufreq =
-        (unsigned long long)((double)(toc - tic) / (realsleep / 1000.0));
-    clocks_units_index = 0;
-    clocks_units_scale = 1000.0;
+          (signed long long)((double)(toc - tic) * 1000.0 / realsleep);
   } else {
-    clocks_cpufreq = 0;
+      clocks_cpufreq = 0;
   }
+
+  /* Always set units consistently */
+  clocks_units_index = 0;
+  clocks_units_scale = 1000.0;
       
 #endif
 
